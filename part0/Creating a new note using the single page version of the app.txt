@@ -1,0 +1,25 @@
+title Creating a new note using the single page version of the app
+
+note over browser:
+browser sends only one POST request to the server
+to the address new_note_spa 
+it contains the new note as JSON-data
+containing both the content of the note (content)
+and the timestamp (date)
+The Content-Type header of the request tells the server that
+the included data is represented in the JSON format
+end note
+
+browser->server: POST { content: "single page app does not reload the whole page", date: "2019-05-25T15:15:59.905Z"}
+end note
+
+note over server:
+does not ask for a redirect
+end note
+
+server->browser: status code 201 created
+
+note over browser:
+stays on the same page
+and sends no further HTTP requests
+end note

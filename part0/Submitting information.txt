@@ -1,0 +1,40 @@
+title Submitting information
+
+note over browser:
+User enters text: "TEST"
+and clicks "Submit" button,
+browser snds the user input 
+to the server
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over server:
+server asks the browser to do
+a new HTTP GET request
+to the address defined in the
+header's Location - the address notes
+end note
+server-->browser: HTTP status code 302
+
+note over browser:
+browser reloads the Notes page
+causing three more HTTP requests
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "TEST", date: "2022-10-16" }, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
+
+note over server
+server does not save new notes
+to a database, so new notes disappear
+when the server is restarted
+end note
